@@ -1,0 +1,31 @@
+# 程序
+./logs/
+/*/logs/
+
+# gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+/*/.gradle
+/*/build/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+/*/.idea
+
+# 前端
+node-modules/
+dist/
+/*/node-modules/
+/*/dist/
+
+### Mac OS ###
+.DS_Store
