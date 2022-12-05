@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:p6spy:mysql://localhost:3306/kindergarten
+    username: root
+    password: root
+
+logging:
+  file:
+    name: logs/app.log
+  level:
+    com:
+      kindergarten: debug
