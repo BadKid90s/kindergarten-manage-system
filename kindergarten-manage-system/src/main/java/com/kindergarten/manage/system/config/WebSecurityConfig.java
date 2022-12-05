@@ -2,7 +2,9 @@ package com.kindergarten.manage.system.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
@@ -16,6 +18,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 @Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
 public class WebSecurityConfig {
 
     /**
@@ -28,9 +32,19 @@ public class WebSecurityConfig {
                 // 基于 token，不需要 session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .formLogin()
+                .successForwardUrl("/index")
+                .failureForwardUrl("/login/error")
+                .and()
+                .logout()
+                .and()
+                .logout()
+                .and()
                 .authorizeRequests(authorize -> authorize
                         // 请求放开
-                        .antMatchers("/hello").permitAll()
+                        .antMatchers("/hello","/error").permitAll()
+                        .antMatchers("/user").hasRole("user")
+
                         // 其他地址的访问均需验证权限
                         .anyRequest().authenticated()
                 );
@@ -75,14 +89,14 @@ public class WebSecurityConfig {
                 User.builder()
                         .username("user")
                         .password(passwordEncoder().encode("user"))
-                        .roles("USER")
+                        .roles("user")
                         .build())
         ;
         manager.createUser(
                 User.builder()
                         .username("admin")
                         .password(passwordEncoder().encode("admin"))
-                        .roles("ADMIN")
+                        .roles("admin")
                         .build())
         ;
         return manager;
