@@ -2,6 +2,7 @@ package com.kindergarten.manage.system.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,10 +17,12 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig {
 
     /**
@@ -27,28 +30,22 @@ public class WebSecurityConfig {
      */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                // 基于 token，不需要 session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .formLogin()
-                .successForwardUrl("/index")
-                .failureForwardUrl("/login/error")
-                .and()
-                .logout()
-                .and()
-                .logout()
-                .and()
+        return http
                 .authorizeRequests(authorize -> authorize
                         // 请求放开
-                        .antMatchers("/hello","/error").permitAll()
-                        .antMatchers("/user").hasRole("user")
-
+                        .antMatchers("/hello", "/error").permitAll()
                         // 其他地址的访问均需验证权限
                         .anyRequest().authenticated()
-                );
-        return http.build();
+                )
+                .formLogin()
+                .and()
+                .logout()
+                .and()
+                .httpBasic(withDefaults())
+                .formLogin(withDefaults())
+                .csrf()
+                .disable()
+        .build();
     }
 
 
