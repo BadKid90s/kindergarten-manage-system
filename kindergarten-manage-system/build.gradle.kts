@@ -15,8 +15,6 @@ configurations {
 }
 
 repositories {
-    maven { setUrl("https://maven.aliyun.com/repository/public/") }
-    maven { setUrl("https://maven.aliyun.com/repository/spring/") }
     mavenCentral()
 }
 
