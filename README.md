@@ -21,7 +21,7 @@
 - Vue
 - Element
 - Webpack
-- Banble
+- Babel
 - Axios
 #### 开发
 **安装依赖**
