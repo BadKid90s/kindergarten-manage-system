@@ -1,4 +1,4 @@
-package com.kindergarten.manage.system.config;
+package com.kindergarten.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
