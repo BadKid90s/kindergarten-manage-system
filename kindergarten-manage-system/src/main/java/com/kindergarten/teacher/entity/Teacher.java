@@ -26,6 +26,10 @@ public class Teacher extends Model<Teacher> {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "主键ID")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
     @ApiModelProperty(value = "姓名")
     private String name;
 

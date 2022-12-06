@@ -1,5 +1,7 @@
 package com.kindergarten.datemanage.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.util.Date;
 import java.io.Serializable;
@@ -24,6 +26,10 @@ import lombok.experimental.Accessors;
 public class DateManage extends Model<DateManage> {
 
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "主键ID")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     @ApiModelProperty(value = "开始时间")
     private Date startDate;

@@ -1,5 +1,7 @@
 package com.kindergarten.classinfo.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.io.Serializable;
@@ -24,6 +26,10 @@ import lombok.experimental.Accessors;
 public class ClassInfo extends Model<ClassInfo> {
 
     private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "主键ID")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     @ApiModelProperty(value = "班级名称")
     private String name;

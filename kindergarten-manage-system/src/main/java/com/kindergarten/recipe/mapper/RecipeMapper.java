@@ -2,6 +2,8 @@ package com.kindergarten.recipe.mapper;
 
 import com.kindergarten.recipe.entity.Recipe;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author lxcecho
  * @since 2022-12-06
  */
+@Repository
+@Mapper
 public interface RecipeMapper extends BaseMapper<Recipe> {
 
 }

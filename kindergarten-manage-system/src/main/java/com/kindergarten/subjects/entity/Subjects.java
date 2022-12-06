@@ -26,6 +26,10 @@ public class Subjects extends Model<Subjects> {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "主键ID")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
     @ApiModelProperty(value = "科目名称")
     private String name;
 

@@ -2,11 +2,14 @@ server:
   port: 8080
 
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher # Springboot2.6 以后将 SpringMVC 默认路径匹配策略从 AntPathMatcher 更改为 PathPatternParser
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:p6spy:mysql://localhost:3306/kindergarten
+    url: jdbc:mysql://120.76.142.218:3306/kindergarten?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&useSSL=false&serverTimezone=GMT
     username: root
-    password: root
+    password: 123456
 
 logging:
   file:
