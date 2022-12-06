@@ -1,4 +1,4 @@
-package com.kindergarten.manage.system.controller;
+package com.kindergarten.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
