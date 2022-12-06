@@ -103,22 +103,12 @@ create table `clocking_in`
 
 create table `recipe`
 (
-    `id`                  bigint auto_increment comment '星期一-主键',
-    `monday_breakfast`    varchar(255) not null comment '星期一-早餐',
-    `monday_lunch`        varchar(255) not null comment '星期一-午餐',
-    `monday_dinner`       varchar(255) not null comment '星期二-晚餐',
-    `tuesday_breakfast`   varchar(255) not null comment '星期二-早餐',
-    `tuesday_lunch`       varchar(255) not null comment '星期二-午餐',
-    `tuesday_dinner`      varchar(255) not null comment '星期三-晚餐',
-    `wednesday_breakfast` varchar(255) not null comment '星期三-早餐',
-    `wednesday_lunch`     varchar(255) not null comment '星期三-午餐',
-    `wednesday_dinner`    varchar(255) not null comment '星期四-晚餐',
-    `thursday_breakfast`  varchar(255) not null comment '星期四-早餐',
-    `thursday__lunch`     varchar(255) not null comment '星期四-午餐',
-    `thursday__dinner`    varchar(255) not null comment '星期五-晚餐',
-    `friday_breakfast`    varchar(255) not null comment '星期五-早餐',
-    `friday_lunch`        varchar(255) not null comment '星期五-午餐',
-    `friday_dinner`       varchar(255) not null comment '星期五-晚餐',
+    `id`                  bigint auto_increment comment '主键',
+    `breakfast`    varchar(255) not null comment '早餐',
+    `lunch`        varchar(255) not null comment '午餐',
+    `dinner`       varchar(255) not null comment '晚餐',
+    `name`         varchar(255) not null comment '星期几',
+    `sort`         int          not null comment '顺序',
     key (id)
 ) engine = InnoDB
   default charset = utf8mb4 comment ='食谱信息表';
