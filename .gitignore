@@ -22,9 +22,9 @@ out/
 /*/.idea
 
 # 前端
-node-modules/
+node_modules/
 dist/
-/*/node-modules/
+/*/node_modules/
 /*/dist/
 
 ### Mac OS ###

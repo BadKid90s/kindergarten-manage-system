@@ -1,14 +1,27 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+    <PanelGroup />
+    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+      <Recipe />
+    </el-row>
+    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+      <ClockingIn />
+    </el-row>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-
+import PanelGroup from './compoments/PanelGroup.vue'
+import ClockingIn from './compoments/ClockingIn.vue'
+import Recipe from './compoments/Recipe.vue'
 export default {
   name: 'Dashboard',
+  components: {
+    PanelGroup,
+    ClockingIn,
+    Recipe
+  },
   computed: {
     ...mapGetters([
       'name'
