@@ -1,5 +1,6 @@
 package com.kindergarten.basic.exception;
 
+import com.kindergarten.basic.result.ResultEnum;
 import com.kindergarten.basic.result.ResultVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,7 +22,7 @@ public class KindergartenControllerAdvice {
      */
     @ResponseBody
     @ExceptionHandler(value = KindergartenException.class)
-    public ResultVO tcErrorHandler(KindergartenException ex) {
+    public ResultVO<String> tcErrorHandler(KindergartenException ex) {
 
         log.error(ex.getMsg());
 
@@ -34,11 +35,11 @@ public class KindergartenControllerAdvice {
      */
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
-    public ResultVO errorHandler(Exception ex) {
+    public ResultVO<String> errorHandler(Exception ex) {
 
         log.error(ex.getMessage());
 
-        return ResultVO.error("-1", ex.getMessage());
+        return  ResultVO.error(ResultEnum.SYSTEM_ERROR.getCode(), ex.getMessage());
 
     }
 

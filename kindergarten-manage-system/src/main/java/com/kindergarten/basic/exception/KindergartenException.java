@@ -36,4 +36,9 @@ public class KindergartenException extends RuntimeException {
         this.msg = msg;
     }
 
+    public KindergartenException(String msg) {
+        this.code = ResultEnum.SYSTEM_ERROR.getCode();
+        this.msg = msg;
+    }
+
 }
