@@ -1,17 +1,25 @@
 package com.kindergarten.index.controller;
 
 import com.kindergarten.basic.exception.KindergartenException;
+import com.kindergarten.basic.result.ResultVO;
+import com.kindergarten.index.service.IndexService;
+import com.kindergarten.index.vo.StatsCountVO;
 import com.kindergarten.student.entity.Student;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/index")
 public class IndexController {
+
+    @Resource
+    private IndexService indexService;
+
     @RequestMapping("/e1")
     public Object e1() {
          throw new KindergartenException("XXX");
@@ -41,6 +49,11 @@ public class IndexController {
     @RequestMapping("/list")
     public List<Object> list() {
         return Collections.emptyList();
+    }
+
+    @RequestMapping("/getStatsCount")
+    public ResultVO<StatsCountVO> getStatsCount() {
+        return indexService.getStatsCount();
     }
 
 }
