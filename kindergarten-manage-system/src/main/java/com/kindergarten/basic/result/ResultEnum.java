@@ -1,4 +1,4 @@
-package com.kindergarten.result;
+package com.kindergarten.basic.result;
 
 /**
  * 返回结果的状态码及提示信息

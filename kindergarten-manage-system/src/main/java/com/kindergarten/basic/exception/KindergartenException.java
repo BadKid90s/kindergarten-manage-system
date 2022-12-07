@@ -1,6 +1,6 @@
-package com.kindergarten.exception;
+package com.kindergarten.basic.exception;
 
-import com.kindergarten.result.ResultEnum;
+import com.kindergarten.basic.result.ResultEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

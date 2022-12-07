@@ -1,4 +1,4 @@
-package com.kindergarten.result;
+package com.kindergarten.basic.result;
 
 import lombok.Getter;
 import lombok.Setter;

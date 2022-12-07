@@ -1,4 +1,4 @@
-package com.kindergarten.config;
+package com.kindergarten.basic.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
