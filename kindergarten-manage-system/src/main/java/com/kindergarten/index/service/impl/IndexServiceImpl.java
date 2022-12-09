@@ -1,7 +1,6 @@
 package com.kindergarten.index.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.kindergarten.basic.result.ResultVO;
 import com.kindergarten.classinfo.mapper.ClassInfoMapper;
 import com.kindergarten.course.mapper.CourseMapper;
 import com.kindergarten.index.service.IndexService;
@@ -38,16 +37,16 @@ public class IndexServiceImpl implements IndexService {
     private RecipeMapper recipeMapper;
 
     @Override
-    public ResultVO<StatsCountVO> getStatsCount() {
+    public StatsCountVO getStatsCount() {
         Long courseNum = courseMapper.selectCount(new QueryWrapper<>());
         Long classNum = classInfoMapper.selectCount(new QueryWrapper<>());
         Long teacherNum = teacherMapper.selectCount(new QueryWrapper<>());
         Long studentNum = studentMapper.selectCount(new QueryWrapper<>());
-        return ResultVO.success(new StatsCountVO(courseNum, classNum, teacherNum, studentNum));
+        return new StatsCountVO(courseNum, classNum, teacherNum, studentNum);
     }
 
     @Override
-    public ResultVO<Map<String, Recipe>> getRecipeList() {
+    public Map<String, Recipe> getRecipeList() {
         List<Recipe> recipes = recipeMapper.selectList(new QueryWrapper<>());
         Map<String, Recipe> recipeMap = new HashMap<>();
         if (!CollectionUtils.isEmpty(recipes)) {
@@ -55,6 +54,6 @@ public class IndexServiceImpl implements IndexService {
                     .stream()
                     .collect(Collectors.toMap(Recipe::getName, recipe -> recipe));
         }
-        return ResultVO.success(recipeMap);
+        return recipeMap;
     }
 }

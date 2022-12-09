@@ -1,7 +1,6 @@
 package com.kindergarten.index.controller;
 
 import com.kindergarten.basic.exception.KindergartenException;
-import com.kindergarten.basic.result.ResultVO;
 import com.kindergarten.index.service.IndexService;
 import com.kindergarten.index.vo.StatsCountVO;
 import com.kindergarten.recipe.entity.Recipe;
@@ -54,12 +53,12 @@ public class IndexController {
     }
 
     @RequestMapping("/getStatsCount")
-    public ResultVO<StatsCountVO> getStatsCount() {
+    public StatsCountVO getStatsCount() {
         return indexService.getStatsCount();
     }
 
     @RequestMapping("/getRecipeList")
-    public ResultVO<Map<String, Recipe>> getRecipeList() {
+    public Map<String, Recipe> getRecipeList() {
         return indexService.getRecipeList();
     }
 
