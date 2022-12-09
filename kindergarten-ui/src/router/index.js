@@ -54,7 +54,17 @@ export const constantRoutes = [
       meta: { title: '首页', icon: 'dashboard' }
     }]
   },
-
+  {
+    path: '/teacher',
+    component: Layout,
+    redirect: '/teacher',
+    children: [{
+      path: 'teacher',
+      name: '老师管理',
+      component: () => import('@/views/teacher/index'),
+      meta: { title: '老师管理', icon: 'people' }
+    }]
+  },
   {
     path: '/example',
     component: Layout,
@@ -62,12 +72,6 @@ export const constantRoutes = [
     name: 'Example',
     meta: { title: 'Example', icon: 'el-icon-s-help' },
     children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
       {
         path: 'tree',
         name: 'Tree',

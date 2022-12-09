@@ -1,19 +1,18 @@
 const Mock = require('mockjs')
 
 const data = Mock.mock({
-  'items|30': [{
+  'items|5': [{
     id: '@id',
-    title: '@sentence(10, 20)',
-    'status|1': ['published', 'draft', 'deleted'],
-    author: 'name',
-    display_time: '@datetime',
-    pageviews: '@integer(300, 5000)'
+    name: 'name',
+    'gender|1': ['男', '女'],
+    age: '@integer(300, 5000)',
+    biography: '@sentence(10, 20)'
   }]
 })
 
 module.exports = [
   {
-    url: '/vue-admin-template/table/list',
+    url: '/vue-admin-template/teacher/list',
     type: 'get',
     response: config => {
       const items = data.items

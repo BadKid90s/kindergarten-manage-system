@@ -12,9 +12,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import PanelGroup from './compoments/PanelGroup.vue'
-import ClockingIn from './compoments/ClockingIn.vue'
-import Recipe from './compoments/Recipe.vue'
+import PanelGroup from './components/PanelGroup.vue'
+import ClockingIn from './components/ClockingIn.vue'
+import Recipe from './components/Recipe.vue'
 export default {
   name: 'Dashboard',
   components: {
