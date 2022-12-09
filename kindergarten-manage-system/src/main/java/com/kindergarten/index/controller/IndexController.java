@@ -4,6 +4,7 @@ import com.kindergarten.basic.exception.KindergartenException;
 import com.kindergarten.basic.result.ResultVO;
 import com.kindergarten.index.service.IndexService;
 import com.kindergarten.index.vo.StatsCountVO;
+import com.kindergarten.recipe.entity.Recipe;
 import com.kindergarten.student.entity.Student;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/index")
@@ -54,6 +56,11 @@ public class IndexController {
     @RequestMapping("/getStatsCount")
     public ResultVO<StatsCountVO> getStatsCount() {
         return indexService.getStatsCount();
+    }
+
+    @RequestMapping("/getRecipeList")
+    public ResultVO<Map<String, Recipe>> getRecipeList() {
+        return indexService.getRecipeList();
     }
 
 }
