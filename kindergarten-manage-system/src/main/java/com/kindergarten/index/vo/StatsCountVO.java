@@ -12,7 +12,7 @@ public class StatsCountVO {
     /**
      * 课程数量
      */
-    private Long courseNum;
+    private Long subjectsNum;
 
     /**
      * 班级数量

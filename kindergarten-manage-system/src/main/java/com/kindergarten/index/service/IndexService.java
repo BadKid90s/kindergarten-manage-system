@@ -1,8 +1,10 @@
 package com.kindergarten.index.service;
 
+import com.kindergarten.index.vo.ClockingVO;
 import com.kindergarten.index.vo.StatsCountVO;
 import com.kindergarten.recipe.entity.Recipe;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -15,9 +17,12 @@ public interface IndexService {
 
     /**
      * 获取所有食谱信息
-     * @return Map<String, Recipe> key：星期，value：食谱信息
      */
-    Map<String, Recipe> getRecipeList();
+   List<Recipe> getRecipeList();
 
 
+    /**
+     * 获取本周和上周周一至周五的打卡人数
+     */
+    ClockingVO getClocking();
 }

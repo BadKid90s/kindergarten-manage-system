@@ -4,16 +4,26 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.kindergarten.clockingin.entity.ClockingIn">
-    <result column="id" property="id" />
-        <result column="student_id" property="studentId" />
-        <result column="date_time" property="dateTime" />
-        <result column="clocking_in_type" property="clockingInType" />
+        <result column="id" property="id"/>
+        <result column="student_id" property="studentId"/>
+        <result column="date_time" property="dateTime"/>
+        <result column="clocking_in_type" property="clockingInType"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
+        id
+        ,
         student_id, date_time, clocking_in_type
     </sql>
 
+    <select id="selectWeekData" resultType="java.lang.Long">
+        SELECT num
+        FROM (SELECT DATE_FORMAT(date_time, '%Y-%m-%d') date_time,
+                     COUNT(1)                           num
+              FROM clocking_in
+              WHERE date_time &gt;= = #{starDate,jdbcType=TIMESTAMP} AND date_time &lt;=  #{endDate,jdbcType=TIMESTAMP}
+              GROUP BY date_time
+              ORDER BY date_time) table_temp
+    </select>
 </mapper>
