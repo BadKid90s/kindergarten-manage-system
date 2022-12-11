@@ -49,7 +49,7 @@ public class MockTeacherTest {
         this.teacherDTOSave = new TeacherDTO()
                 .setName("AA" + UUID.randomUUID().toString().substring(0, 3))
                 .setAge((int) (Math.random() * 100) + 10)
-                .setGender(0)
+                .setGender(false)
                 .setHobbyTag("rua cat and dog")
                 .setBiography("不羁放纵爱自由");
 
@@ -57,7 +57,7 @@ public class MockTeacherTest {
                 .setId(3L)
                 .setName("lxcecho")
                 .setAge(111)
-                .setGender(0)
+                .setGender(false)
                 .setHobbyTag("rua cat and dog")
                 .setBiography("不羁放纵爱自由1111");
 

@@ -22,4 +22,6 @@ public class TeacherPageDTO {
     @ApiModelProperty(value = "每页数目")
     private Integer pageSize;
 
+    // TODO 增加其他查询条件，如按姓名查询
+
 }
