@@ -1,4 +1,4 @@
-package com.kindergarten.kindergartenmanagesystem;
+package com.kindergarten;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

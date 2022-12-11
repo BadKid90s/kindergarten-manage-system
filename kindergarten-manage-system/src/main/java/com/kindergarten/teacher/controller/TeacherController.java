@@ -1,9 +1,14 @@
 package com.kindergarten.teacher.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.github.pagehelper.PageInfo;
+import com.kindergarten.teacher.dto.TeacherDTO;
+import com.kindergarten.teacher.dto.TeacherPageDTO;
+import com.kindergarten.teacher.entity.Teacher;
+import com.kindergarten.teacher.service.TeacherService;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +21,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/teacher/teacher")
 public class TeacherController {
+
+    private final TeacherService teacherService;
+
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
+
+    @PostMapping("list")
+    public PageInfo<List<Teacher>> getList(@RequestBody TeacherPageDTO teacherPageDTO) {
+        return teacherService.getList(teacherPageDTO.getPageNum(), teacherPageDTO.getPageSize());
+    }
+
+    @PostMapping("getById")
+    public Teacher getById(@RequestParam Long id) {
+        return teacherService.getInfoById(id);
+    }
+
+    @PostMapping("save")
+    public int save(@RequestBody TeacherDTO teacherDTO) {
+        return teacherService.save(teacherDTO);
+    }
+
+    @PostMapping("modify")
+    public Teacher modify(@RequestBody TeacherDTO teacherDTO) {
+        return teacherService.modify(teacherDTO);
+    }
+
+    @PostMapping("delete")
+    public int deleteByIds(@RequestBody TeacherDTO teacherDTO) {
+        return teacherService.deleteByIds(teacherDTO.getIds());
+    }
 
 }

@@ -34,10 +34,10 @@ public class Teacher extends Model<Teacher> {
     private String name;
 
     @ApiModelProperty(value = "年龄")
-    private String age;
+    private int age;
 
     @ApiModelProperty(value = "性别")
-    private String gender;
+    private int gender;
 
     @ApiModelProperty(value = "爱好")
     private String hobbyTag;
