@@ -10,6 +10,7 @@ import com.kindergarten.teacher.entity.Teacher;
 import com.kindergarten.teacher.mapper.TeacherMapper;
 import com.kindergarten.teacher.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,7 @@ import java.util.List;
  * @since 2022-12-06
  */
 @Service
+@Slf4j
 public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> implements TeacherService {
 
     @Resource
@@ -53,7 +55,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
             BeanUtils.copyProperties(teacherDTO, teacher);
             return teacherMapper.insert(teacher);
         } catch (Exception e) {
-            log.error("ex: {}", e.getCause());
+            log.error("ex: {}", e.getMessage());
             throw new KindergartenException(ResultEnum.SYSTEM_ERROR.getCode(), e.getMessage());
         }
     }
@@ -67,7 +69,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
             teacherMapper.updateById(teacher);
             return teacher;
         } catch (Exception e) {
-            log.error("ex: {}", e.getCause());
+            log.error("ex: {}", e.getMessage());
             throw new KindergartenException(ResultEnum.SYSTEM_ERROR.getCode(), e.getMessage());
         }
     }
@@ -78,7 +80,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         try {
             return teacherMapper.deleteBatchIds(ids);
         } catch (Exception e) {
-            log.error("ex: {}", e.getCause());
+            log.error("ex: {}", e.getMessage());
             throw new KindergartenException(ResultEnum.SYSTEM_ERROR.getCode(), e.getMessage());
         }
     }
