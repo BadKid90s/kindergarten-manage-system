@@ -66,7 +66,8 @@
       <el-table-column class-name="status-col" label="Status" width="180" align="center">
         <template slot-scope="scope">
           <el-button size="small" type="warning" @click="handleUpdate(scope)">修改</el-button>
-          <el-button size="small" type="danger" @click="handleDelete(scope.id)" style="margin-left: 20px">删除</el-button>
+          <el-button size="small" type="danger" @click="handleDelete(scope.id)" style="margin-left: 20px">删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>

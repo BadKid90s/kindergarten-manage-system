@@ -1,7 +1,7 @@
 <template>
   <el-row v-loading="isLoading" :gutter="40" class="group">
     <el-carousel indicator-position="outside" height="550px">
-      <el-carousel-item v-for="(item,index) in dataList" :key="index">
+      <el-carousel-item v-for="item in dataList" :key="item.id">
         <p style="text-align: center">{{ item.name + '食谱' }}</p>
         <div class="block">
           <el-timeline>

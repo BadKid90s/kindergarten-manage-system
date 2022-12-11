@@ -12,7 +12,7 @@ const data = Mock.mock({
 
 module.exports = [
   {
-    url: '/vue-admin-template/teacher/list',
+    url: '/teacher/list',
     type: 'get',
     response: config => {
       const items = data.items

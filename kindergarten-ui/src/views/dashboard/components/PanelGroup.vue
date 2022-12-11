@@ -1,6 +1,6 @@
 <template>
   <el-row v-loading="isLoading" :gutter="40" class="panel-group">
-    <el-col v-for="(item,index) in dataList" :key="index" :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-for="item in dataList" :key="item.key" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper">
           <svg-icon :icon-class="item.icon" class-name="card-panel-icon" />

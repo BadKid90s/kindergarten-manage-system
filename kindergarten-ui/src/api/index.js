@@ -2,19 +2,19 @@ import request from '@/utils/request'
 
 export function getStatistic() {
   return request({
-    url: '/vue-admin-template/index/statistic',
+    url: '/index/statistic',
     method: 'get'
   })
 }
 export function getClocking() {
   return request({
-    url: '/vue-admin-template/index/clocking',
+    url: '/index/clocking',
     method: 'get'
   })
 }
 export function getRecipe() {
   return request({
-    url: '/vue-admin-template/index/recipe',
+    url: '/index/recipe',
     method: 'get'
   })
 }
