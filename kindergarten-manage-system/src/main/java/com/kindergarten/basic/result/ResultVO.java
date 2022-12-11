@@ -19,7 +19,7 @@ public class ResultVO<T> {
     /**
      * 返回的状态码
      */
-    private String code;
+    private Integer code;
 
     /**
      * 返回的提示信息
@@ -75,7 +75,7 @@ public class ResultVO<T> {
      * @param <T>
      * @return
      */
-    public static <T> ResultVO<T> error(String code, String msg) {
+    public static <T> ResultVO<T> error(Integer code, String msg) {
         ResultVO<T> result = new ResultVO<>();
         result.setCode(code);
         result.setMsg(msg);
