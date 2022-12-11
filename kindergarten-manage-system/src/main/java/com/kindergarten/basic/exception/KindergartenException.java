@@ -19,7 +19,7 @@ public class KindergartenException extends RuntimeException {
     /**
      * 异常状态码
      */
-    private final String code;
+    private final Integer code;
 
     /**
      * 异常信息
@@ -31,7 +31,7 @@ public class KindergartenException extends RuntimeException {
         this.msg = resultEnum.getMsg();
     }
 
-    public KindergartenException(String code, String msg) {
+    public KindergartenException(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }

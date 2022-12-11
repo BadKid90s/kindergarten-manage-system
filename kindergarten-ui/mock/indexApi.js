@@ -23,7 +23,7 @@ const clockingData = Mock.mock({
 })
 module.exports = [
   {
-    url: '/vue-admin-template/index/statistic',
+    url: '/index/statistic',
     type: 'get',
     response: config => {
       return {
@@ -33,7 +33,7 @@ module.exports = [
     }
   },
   {
-    url: '/vue-admin-template/index/recipe',
+    url: '/index/recipe',
     type: 'get',
     response: config => {
       return {
@@ -43,7 +43,7 @@ module.exports = [
     }
   },
   {
-    url: '/vue-admin-template/index/clocking',
+    url: '/index/clocking',
     type: 'get',
     response: config => {
       return {

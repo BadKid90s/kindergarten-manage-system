@@ -22,7 +22,7 @@
         FROM (SELECT DATE_FORMAT(date_time, '%Y-%m-%d') date_time,
                      COUNT(1)                           num
               FROM clocking_in
-              WHERE date_time &gt;= = #{starDate,jdbcType=TIMESTAMP} AND date_time &lt;=  #{endDate,jdbcType=TIMESTAMP}
+              WHERE date_time &gt;= #{starDate,jdbcType=TIMESTAMP} AND date_time &lt;=  #{endDate,jdbcType=TIMESTAMP}
               GROUP BY date_time
               ORDER BY date_time) table_temp
     </select>
