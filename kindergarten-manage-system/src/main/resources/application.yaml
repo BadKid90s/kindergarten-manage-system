@@ -3,7 +3,7 @@ server:
 
 spring:
   mvc:
-    pathmatch:
+    path-match:
       matching-strategy: ant_path_matcher # Springboot2.6 以后将 SpringMVC 默认路径匹配策略从 AntPathMatcher 更改为 PathPatternParser
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

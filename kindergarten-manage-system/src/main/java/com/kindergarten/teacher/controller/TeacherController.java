@@ -1,7 +1,7 @@
 package com.kindergarten.teacher.controller;
 
 
-import com.github.pagehelper.PageInfo;
+import com.kindergarten.basic.result.PageInfo;
 import com.kindergarten.teacher.dto.TeacherDTO;
 import com.kindergarten.teacher.dto.TeacherPageDTO;
 import com.kindergarten.teacher.entity.Teacher;

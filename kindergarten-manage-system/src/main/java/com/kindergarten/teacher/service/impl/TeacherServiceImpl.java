@@ -1,9 +1,10 @@
 package com.kindergarten.teacher.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.page.PageMethod;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kindergarten.basic.exception.KindergartenException;
+import com.kindergarten.basic.result.PageInfo;
 import com.kindergarten.basic.result.ResultEnum;
 import com.kindergarten.teacher.dto.TeacherDTO;
 import com.kindergarten.teacher.entity.Teacher;
@@ -35,9 +36,11 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
 
     @Override
     public PageInfo<List<Teacher>> getList(int pageNum, int pageSize) {
-        PageMethod.startPage(pageNum, pageSize);
-        List<Teacher> teachers = teacherMapper.selectList(new QueryWrapper<>());
-        return new PageInfo(teachers);
+        Page<Teacher> page = new Page<>(pageNum, pageSize);
+
+        IPage<Teacher> selectPage = teacherMapper.selectPage(page, new QueryWrapper<>());
+
+        return PageInfo.formDbPage(selectPage);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.kindergarten.teacher.service;
 
-import com.github.pagehelper.PageInfo;
+import com.kindergarten.basic.result.PageInfo;
 import com.kindergarten.teacher.dto.TeacherDTO;
 import com.kindergarten.teacher.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
