@@ -1,5 +1,8 @@
 package com.kindergarten.student.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kindergarten.basic.result.PageInfo;
 import com.kindergarten.student.dto.StudentDTO;
 import com.kindergarten.student.dto.StudentPageDTO;
@@ -10,8 +13,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kindergarten.teacher.entity.Teacher;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -26,7 +31,16 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
 
     @Override
     public PageInfo<List<Student>> getList(StudentPageDTO studentPageDTO) {
-        return null;
+        Page<Student> page = new Page<>(studentPageDTO.getPageNum(), studentPageDTO.getPageSize());
+
+        LambdaQueryWrapper<Student> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(StringUtils.hasLength(studentPageDTO.getName()), Student::getName, studentPageDTO.getName())
+                .eq(Objects.nonNull(studentPageDTO.getGender()), Student::getGender, studentPageDTO.getGender())
+                .like(StringUtils.hasLength(studentPageDTO.getGuardianName()), Student::getGuardianName, studentPageDTO.getGuardianName())
+                .eq(Objects.nonNull(studentPageDTO.getGuardianPhone()), Student::getGuardianPhone, studentPageDTO.getGuardianPhone());
+        IPage<Student> selectPage = baseMapper.selectPage(page, wrapper);
+
+        return PageInfo.formDbPage(selectPage);
     }
 
     @Override

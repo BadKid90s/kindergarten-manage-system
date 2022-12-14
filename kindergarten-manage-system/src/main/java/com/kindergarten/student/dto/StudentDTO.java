@@ -22,10 +22,10 @@ public class StudentDTO {
     private String name;
 
     @ApiModelProperty(value = "年龄")
-    private int age;
+    private Integer age;
 
     @ApiModelProperty(value = "性别")
-    private int gender;
+    private Integer gender;
 
     @ApiModelProperty(value = "出生日期")
     private Date birthday;

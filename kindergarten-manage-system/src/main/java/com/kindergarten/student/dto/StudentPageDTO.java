@@ -24,6 +24,9 @@ public class StudentPageDTO {
     @ApiModelProperty(value = "性别")
     private Integer gender;
 
-    @ApiModelProperty(value = "爱好")
-    private String hobbyTag;
-}
+    @ApiModelProperty(value = "监护人姓名")
+    private String guardianName;
+
+    @ApiModelProperty(value = "监护人联系方式")
+    private String guardianPhone;
+};

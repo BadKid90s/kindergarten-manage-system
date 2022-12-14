@@ -134,10 +134,6 @@ export default {
         pageSize: 20,
         total: 1
       },
-      formInline: {
-        user: '',
-        region: ''
-      },
       teacherForm: {
         name: null,
         age: null,

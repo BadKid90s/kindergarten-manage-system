@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -35,10 +37,10 @@ public class Student extends Model<Student> {
     private String name;
 
     @ApiModelProperty(value = "年龄")
-    private String age;
+    private Integer age;
 
     @ApiModelProperty(value = "性别")
-    private String gender;
+    private Integer gender;
 
     @ApiModelProperty(value = "出生日期")
     private Date birthday;

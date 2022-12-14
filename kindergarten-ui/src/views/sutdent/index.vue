@@ -60,19 +60,13 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="age"
-        label="年龄"
-        width="180"
+        prop="guardianName"
+        label="监护人姓名"
         align="center"
       />
       <el-table-column
-        prop="hobbyTag"
-        label="爱好"
-        align="left"
-      />
-      <el-table-column
-        prop="biography"
-        label="个人简介"
+        prop="guardianPhone"
+        label="监护人联系方式"
         align="left"
       />
       <el-table-column class-name="status-col" label="Status" width="180" align="center">
@@ -98,12 +92,20 @@
       width="50%"
       :before-close="handleClose"
     >
-      <el-form ref="teacherForm" :model="teacherForm" label-width="80px">
+      <el-form ref="teacherForm" :model="teacherForm" label-width="120px">
         <el-form-item label="姓名">
           <el-input v-model="teacherForm.name" />
         </el-form-item>
         <el-form-item label="年龄">
           <el-input v-model="teacherForm.age" />
+        </el-form-item>
+        <el-form-item label="出生日期">
+          <el-date-picker
+            v-model="teacherForm.birthday"
+            type="date"
+            placeholder="选择日期"
+            style="width: 100%"
+          />
         </el-form-item>
         <el-form-item label="性别">
           <el-select v-model="teacherForm.gender" placeholder="性别" style="width: 100%">
@@ -111,11 +113,11 @@
             <el-option label="女" :value="2" />
           </el-select>
         </el-form-item>
-        <el-form-item label="爱好">
-          <el-input v-model="teacherForm.hobbyTag" />
+        <el-form-item label="监护人姓名">
+          <el-input v-model="teacherForm.guardianName" />
         </el-form-item>
-        <el-form-item label="个人简介">
-          <el-input v-model="teacherForm.biography" type="textarea" />
+        <el-form-item label="监护人联系方式">
+          <el-input v-model="teacherForm.guardianPhone" type="textarea" />
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -127,7 +129,7 @@
 </template>
 
 <script>
-import { getList, modify, remove, save } from '@/api/teacher'
+import { getList, modify, remove, save } from '@/api/student'
 import { Message } from 'element-ui'
 
 export default {
@@ -146,16 +148,13 @@ export default {
         pageSize: 20,
         total: 1
       },
-      formInline: {
-        user: '',
-        region: ''
-      },
       teacherForm: {
         name: null,
         age: null,
         gender: 1,
-        hobbyTag: null,
-        biography: null
+        birthday: null,
+        guardianName: null,
+        guardianPhone: null
       },
       dialogVisible: false,
       isUpdate: false
@@ -218,8 +217,9 @@ export default {
         name: null,
         age: null,
         gender: null,
-        hobbyTag: null,
-        biography: null
+        birthday: null,
+        guardianName: null,
+        guardianPhone: null
       }
       this.fetchData()
     }
