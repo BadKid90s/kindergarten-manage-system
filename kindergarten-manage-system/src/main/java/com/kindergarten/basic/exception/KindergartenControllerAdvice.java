@@ -24,7 +24,7 @@ public class KindergartenControllerAdvice {
     @ExceptionHandler(value = KindergartenException.class)
     public ResultVO<String> tcErrorHandler(KindergartenException ex) {
 
-        log.error(ex.getMsg());
+        log.error(ex.getMsg(), ex);
 
         return ResultVO.error(ex.getCode(), ex.getMsg());
 
@@ -37,9 +37,9 @@ public class KindergartenControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public ResultVO<String> errorHandler(Exception ex) {
 
-        log.error(ex.getMessage());
+        log.error(ex.getMessage(), ex);
 
-        return  ResultVO.error(ResultEnum.SYSTEM_ERROR.getCode(), ex.getMessage());
+        return ResultVO.error(ResultEnum.SYSTEM_ERROR.getCode(), ex.getMessage());
 
     }
 

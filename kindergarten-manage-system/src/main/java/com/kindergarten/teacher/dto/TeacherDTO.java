@@ -28,7 +28,7 @@ public class TeacherDTO {
     private int age;
 
     @ApiModelProperty(value = "性别")
-    private boolean gender;
+    private int gender;
 
     @ApiModelProperty(value = "爱好")
     private String hobbyTag;
