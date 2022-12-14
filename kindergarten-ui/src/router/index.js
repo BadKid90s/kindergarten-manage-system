@@ -65,6 +65,17 @@ export const constantRoutes = [
     }]
   },
   {
+    path: '/student',
+    component: Layout,
+    redirect: '/student',
+    children: [{
+      path: 'student',
+      name: '学生管理',
+      component: () => import('@/views/sutdent/index'),
+      meta: { title: '学生管理', icon: 'people' }
+    }]
+  },
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
