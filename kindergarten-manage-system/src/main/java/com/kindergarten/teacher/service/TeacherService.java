@@ -2,6 +2,7 @@ package com.kindergarten.teacher.service;
 
 import com.kindergarten.basic.result.PageInfo;
 import com.kindergarten.teacher.dto.TeacherDTO;
+import com.kindergarten.teacher.dto.TeacherPageDTO;
 import com.kindergarten.teacher.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -20,11 +21,9 @@ public interface TeacherService extends IService<Teacher> {
     /**
      * Getting the teacher paging list data.
      *
-     * @param pageNum  Query page number
-     * @param pageSize Number per page
      * @return list teachers
      */
-    PageInfo<List<Teacher>> getList(int pageNum, int pageSize);
+    PageInfo<List<Teacher>> getList(TeacherPageDTO teacherPageDTO);
 
     /**
      * Getting teacher's info by primary key id.
@@ -56,5 +55,6 @@ public interface TeacherService extends IService<Teacher> {
      * @return Number of successful records deleted.
      */
     int deleteByIds(List<Long> ids);
+
 
 }

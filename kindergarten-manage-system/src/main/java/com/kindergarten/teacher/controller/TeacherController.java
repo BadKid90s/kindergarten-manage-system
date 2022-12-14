@@ -30,7 +30,7 @@ public class TeacherController {
 
     @PostMapping("list")
     public PageInfo<List<Teacher>> getList(@RequestBody TeacherPageDTO teacherPageDTO) {
-        return teacherService.getList(teacherPageDTO.getPageNum(), teacherPageDTO.getPageSize());
+        return teacherService.getList(teacherPageDTO);
     }
 
     @PostMapping("getById")
