@@ -19,7 +19,7 @@ import java.util.List;
  * @since 2022-12-06
  */
 @RestController
-@RequestMapping("/teacher/teacher")
+@RequestMapping("/teacher")
 public class TeacherController {
 
     private final TeacherService teacherService;
@@ -28,12 +28,12 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @PostMapping("list")
-    public PageInfo<List<Teacher>> getList(@RequestBody TeacherPageDTO teacherPageDTO) {
+    @GetMapping("list")
+    public PageInfo<List<Teacher>> getList(TeacherPageDTO teacherPageDTO) {
         return teacherService.getList(teacherPageDTO);
     }
 
-    @PostMapping("getById")
+    @GetMapping("getById")
     public Teacher getById(@RequestParam Long id) {
         return teacherService.getInfoById(id);
     }
@@ -43,12 +43,12 @@ public class TeacherController {
         return teacherService.save(teacherDTO);
     }
 
-    @PostMapping("modify")
+    @PutMapping("modify")
     public Teacher modify(@RequestBody TeacherDTO teacherDTO) {
         return teacherService.modify(teacherDTO);
     }
 
-    @PostMapping("delete")
+    @DeleteMapping("remove")
     public int deleteByIds(@RequestBody TeacherDTO teacherDTO) {
         return teacherService.deleteByIds(teacherDTO.getIds());
     }

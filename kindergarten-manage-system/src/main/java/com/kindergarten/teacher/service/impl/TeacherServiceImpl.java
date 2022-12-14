@@ -43,7 +43,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         Page<Teacher> page = new Page<>(teacherPageDTO.getPageNum(), teacherPageDTO.getPageSize());
 
         LambdaQueryWrapper<Teacher> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(StringUtils.hasLength(teacherPageDTO.getName()), Teacher::getName, teacherPageDTO.getName())
+        wrapper.like(StringUtils.hasLength(teacherPageDTO.getName()), Teacher::getName, teacherPageDTO.getName())
                 .eq(Objects.nonNull(teacherPageDTO.getGender()), Teacher::getGender, teacherPageDTO.getGender())
                 .eq(StringUtils.hasLength(teacherPageDTO.getHobbyTag()), Teacher::getHobbyTag, teacherPageDTO.getHobbyTag());
         IPage<Teacher> selectPage = teacherMapper.selectPage(page, wrapper);
@@ -61,39 +61,24 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int save(TeacherDTO teacherDTO) {
-        try {
-            Teacher teacher = new Teacher();
-            BeanUtils.copyProperties(teacherDTO, teacher);
-            return teacherMapper.insert(teacher);
-        } catch (Exception e) {
-            log.error("ex: {}", e.getMessage());
-            throw new KindergartenException(ResultEnum.SYSTEM_ERROR.getCode(), e.getMessage());
-        }
+        Teacher teacher = new Teacher();
+        BeanUtils.copyProperties(teacherDTO, teacher);
+        return teacherMapper.insert(teacher);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Teacher modify(TeacherDTO teacherDTO) {
-        try {
-            Teacher teacher = this.getInfoById(teacherDTO.getId());
-            BeanUtils.copyProperties(teacherDTO, teacher);
-            teacherMapper.updateById(teacher);
-            return teacher;
-        } catch (Exception e) {
-            log.error("ex: {}", e.getMessage());
-            throw new KindergartenException(ResultEnum.SYSTEM_ERROR.getCode(), e.getMessage());
-        }
+        Teacher teacher = this.getInfoById(teacherDTO.getId());
+        BeanUtils.copyProperties(teacherDTO, teacher);
+        teacherMapper.updateById(teacher);
+        return teacher;
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteByIds(List<Long> ids) {
-        try {
-            return teacherMapper.deleteBatchIds(ids);
-        } catch (Exception e) {
-            log.error("ex: {}", e.getMessage());
-            throw new KindergartenException(ResultEnum.SYSTEM_ERROR.getCode(), e.getMessage());
-        }
+        return teacherMapper.deleteBatchIds(ids);
     }
 
 }

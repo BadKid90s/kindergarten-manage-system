@@ -7,8 +7,9 @@
         </el-form-item>
         <el-form-item label="性别">
           <el-select v-model="searchParams.gender" placeholder="性别">
-            <el-option label="男" value="1"></el-option>
-            <el-option label="女" value="2"></el-option>
+            <el-option label="全部" value=""></el-option>
+            <el-option label="男" :value="1"></el-option>
+            <el-option label="女" :value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="爱好">
@@ -43,6 +44,9 @@
         width="180"
         align="center"
       >
+        <template slot-scope="scope">
+          {{ scope.row.gender === 1 ? '男' : '女' }}
+        </template>
       </el-table-column>
       <el-table-column
         prop="age"
@@ -65,8 +69,8 @@
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="180" align="center">
         <template slot-scope="scope">
-          <el-button size="small" type="warning" @click="handleUpdate(scope)">修改</el-button>
-          <el-button size="small" type="danger" @click="handleDelete(scope.id)" style="margin-left: 20px">删除
+          <el-button size="small" type="warning" @click="handleUpdate(scope.row)">修改</el-button>
+          <el-button size="small" type="danger" @click="handleDelete(scope.row.id)" style="margin-left: 20px">删除
           </el-button>
         </template>
       </el-table-column>
@@ -96,8 +100,8 @@
         </el-form-item>
         <el-form-item label="性别">
           <el-select v-model="teacherForm.gender" placeholder="性别" style="width: 100%">
-            <el-option label="男" value="1"></el-option>
-            <el-option label="女" value="2"></el-option>
+            <el-option label="男" :value="1"></el-option>
+            <el-option label="女" :value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="爱好">
@@ -109,14 +113,14 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleCancel">取 消</el-button>
-        <el-button type="primary" @click="handleSubmit = false">确 定</el-button>
+        <el-button type="primary" @click="handleSubmit">确 定</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { getList, remove, save, modify } from '@/api/teacher'
+import { getList, modify, remove, save } from '@/api/teacher'
 import { Message } from 'element-ui'
 
 export default {
@@ -131,9 +135,9 @@ export default {
         hobbyTag: null
       },
       pageInfo: {
-        pageNum: 100,
+        pageNum: 1,
         pageSize: 20,
-        total: 1000
+        total: 1
       },
       formInline: {
         user: '',
@@ -142,7 +146,7 @@ export default {
       teacherForm: {
         name: null,
         age: null,
-        gender: null,
+        gender: 1,
         hobbyTag: null,
         biography: null
       },
@@ -157,8 +161,11 @@ export default {
     fetchData() {
       this.listLoading = true
       const { pageNum, pageSize } = this.pageInfo
+      if (this.searchParams.gender === '') {
+        this.searchParams.gender = null
+      }
       getList({ ...this.searchParams, pageNum, pageSize }).then(response => {
-        this.list = response.data.items
+        this.list = response.data.list
         this.listLoading = false
       })
     },
@@ -174,34 +181,32 @@ export default {
       this.dialogVisible = true
     },
     handleDelete(id) {
-      remove({ id }).then(response => {
-        Message.error('操作成功！')
+      remove({ ids: [id] }).then(response => {
+        Message.success('操作成功！')
       })
+      this.fetchData()
     },
     handleClose(done) {
-      if (this.isUpdate) {
-        this.isUpdate = false
-      }
       done()
+      this.isUpdate = false
       this.dialogVisible = false
     },
     handleCancel() {
-      if (this.isUpdate) {
-        this.isUpdate = false
-      }
+      this.isUpdate = false
       this.dialogVisible = false
     },
     handleSubmit() {
       if (this.isUpdate) {
         this.isUpdate = false
         modify(this.teacherForm).then(() => {
-          Message.error('操作成功！')
+          Message.success('操作成功！')
         })
       } else {
         save(this.teacherForm).then(() => {
-          Message.error('操作成功！')
+          Message.success('操作成功！')
         })
       }
+      this.dialogVisible = false
       this.teacherForm = {
         name: null,
         age: null,
@@ -209,6 +214,7 @@ export default {
         hobbyTag: null,
         biography: null
       }
+      this.fetchData()
     }
   }
 }
