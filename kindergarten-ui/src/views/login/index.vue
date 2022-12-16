@@ -1,7 +1,12 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
-             label-position="left"
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      auto-complete="on"
+      label-position="left"
     >
 
       <div class="title-container">
@@ -10,7 +15,7 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <svg-icon icon-class="user"/>
+          <svg-icon icon-class="user" />
         </span>
         <el-input
           ref="username"
@@ -25,7 +30,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="password"/>
+          <svg-icon icon-class="password" />
         </span>
         <el-input
           :key="passwordType"
@@ -39,13 +44,16 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
+          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
-                 @click.native.prevent="handleLogin"
-      >Login
+      <el-button
+        :loading="loading"
+        type="primary"
+        style="width:100%;margin-bottom:30px;"
+        @click.native.prevent="handleLogin"
+      >登录
       </el-button>
 
     </el-form>
@@ -178,16 +186,22 @@ $dark_gray: #889aa4;
 $light_gray: #eee;
 
 .login-container {
-  min-height: 100%;
+  //min-height: 100%;
+  //width: 100%;
+  //background-color: $bg;
+  //overflow: hidden;
   width: 100%;
-  background-color: $bg;
-  overflow: hidden;
+  height: 100%;
+  background-image: url("../../assets/login_images/a.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
 
   .login-form {
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 15% 35px 0;
     margin: 0 auto;
     overflow: hidden;
   }
