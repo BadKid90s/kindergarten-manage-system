@@ -1,8 +1,13 @@
 package com.kindergarten.teacher;
 
 import com.alibaba.fastjson2.JSON;
+import com.github.javafaker.Faker;
+import com.kindergarten.student.entity.Student;
+import com.kindergarten.student.mapper.StudentMapper;
 import com.kindergarten.teacher.dto.TeacherDTO;
 import com.kindergarten.teacher.dto.TeacherPageDTO;
+import com.kindergarten.teacher.entity.Teacher;
+import com.kindergarten.teacher.mapper.TeacherMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +24,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -35,6 +44,10 @@ public class MockTeacherTest {
 
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private TeacherMapper teacherMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     private TeacherDTO teacherDTOSave;
 
@@ -115,5 +128,37 @@ public class MockTeacherTest {
                 .andReturn();
 
         log.debug("result: {}", result.getResponse().getContentAsString(StandardCharsets.UTF_8));
+    }
+
+    @Test
+    public void teacher() {
+        Faker faker = new Faker(Locale.CHINA);
+
+        for (int i = 0; i < 5; i++) {
+            Teacher teacher = new Teacher();
+            teacher.setName(faker.name().name());
+            teacher.setAge(20 + (int) (Math.random() * (30 + 1 - 20)));
+            teacher.setBiography(LocalDate.now().plusYears(-i + 10).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            teacher.setGender(2);
+            teacher.setHobbyTag("唱歌跳舞");
+            teacher.setBiography("作为一名教师,我一直严格要求自己,务实求真,始终把教书育人当作自己的第一要务。");
+            teacherMapper.insert(teacher);
+        }
+    }
+
+    @Test
+    public void student() {
+        Faker faker = new Faker(Locale.CHINA);
+
+        for (int i = 0; i < 30; i++) {
+            Student teacher = new Student();
+            teacher.setName(faker.name().name());
+            teacher.setAge(5 + (int) (Math.random() * (14 + 1 - 5)));
+            teacher.setBirthday(new Date());
+            teacher.setGender(2);
+            teacher.setGuardianName(faker.name().name());
+            teacher.setGuardianPhone(faker.phoneNumber().phoneNumber());
+            studentMapper.insert(teacher);
+        }
     }
 }

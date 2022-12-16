@@ -10,6 +10,7 @@ import com.kindergarten.index.vo.StatsCountVO;
 import com.kindergarten.recipe.entity.Recipe;
 import com.kindergarten.recipe.mapper.RecipeMapper;
 import com.kindergarten.student.mapper.StudentMapper;
+import com.kindergarten.subjects.mapper.SubjectsMapper;
 import com.kindergarten.teacher.mapper.TeacherMapper;
 import lombok.val;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ import java.util.stream.Collectors;
 public class IndexServiceImpl implements IndexService {
 
     @Resource
-    private CourseMapper courseMapper;
+    private SubjectsMapper subjectsMapper;
 
     @Resource
     private ClassInfoMapper classInfoMapper;
@@ -47,11 +48,11 @@ public class IndexServiceImpl implements IndexService {
 
     @Override
     public StatsCountVO getStatsCount() {
-        Long courseNum = courseMapper.selectCount(new QueryWrapper<>());
+        Long subjectsNum = subjectsMapper.selectCount(new QueryWrapper<>());
         Long classNum = classInfoMapper.selectCount(new QueryWrapper<>());
         Long teacherNum = teacherMapper.selectCount(new QueryWrapper<>());
         Long studentNum = studentMapper.selectCount(new QueryWrapper<>());
-        return new StatsCountVO(courseNum, classNum, teacherNum, studentNum);
+        return new StatsCountVO(subjectsNum, classNum, teacherNum, studentNum);
     }
 
     @Override
