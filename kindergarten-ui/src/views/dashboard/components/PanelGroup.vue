@@ -30,7 +30,7 @@ export default {
       isLoading: true,
       dataList: [
         {
-          name: '课程数量',
+          name: '学科数量',
           key: 'subjects',
           num: 10,
           icon: 'subjects'
@@ -78,7 +78,7 @@ export default {
           if (item.key === 'teacher') {
             return {
               ...item,
-              num: response.data.classNum
+              num: response.data.teacherNum
             }
           }
           if (item.key === 'student') {

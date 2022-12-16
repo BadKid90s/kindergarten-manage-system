@@ -145,7 +145,7 @@ export default {
       },
       pageInfo: {
         pageNum: 1,
-        pageSize: 20,
+        pageSize: 10,
         total: 1
       },
       teacherForm: {
