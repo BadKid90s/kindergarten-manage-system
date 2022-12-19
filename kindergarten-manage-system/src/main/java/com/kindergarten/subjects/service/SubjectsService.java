@@ -1,7 +1,12 @@
 package com.kindergarten.subjects.service;
 
+import com.kindergarten.basic.result.PageInfo;
+import com.kindergarten.subjects.dto.SubjectsDTO;
+import com.kindergarten.subjects.dto.SubjectsPageDTO;
 import com.kindergarten.subjects.entity.Subjects;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +18,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SubjectsService extends IService<Subjects> {
 
+    PageInfo<List<Subjects>> getList(SubjectsPageDTO studentPageDTO);
+
+    Subjects getInfoById(Long id);
+
+    void save(SubjectsDTO subjectsDTO);
+
+    void modify(SubjectsDTO subjectsDTO);
 }
